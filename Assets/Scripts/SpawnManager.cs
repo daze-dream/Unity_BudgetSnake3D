@@ -28,7 +28,7 @@ public class SpawnManager : MonoBehaviour
     {
         float spawnX = Random.Range(-Mathf.Floor((xRange / 2) - 1), Mathf.Floor((xRange / 2)-1) );
         float spawnZ = Random.Range(-Mathf.Floor((zRange / 2) -1 ), Mathf.Floor((zRange / 2)-1) );
-        return new Vector3(spawnX,0, spawnZ);
+        return new Vector3(spawnX,1, spawnZ);
 
     }
 

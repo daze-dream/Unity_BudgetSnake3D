@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerupBehaviour : MonoBehaviour
+public class SnakeBody : MonoBehaviour
 {
-
-
+    public bool isHit;
     // Start is called before the first frame update
     void Start()
     {
-        
+        isHit = false;
     }
 
     // Update is called once per frame
@@ -18,20 +17,12 @@ public class PowerupBehaviour : MonoBehaviour
         
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.CompareTag("head"))
-    //    {
-    //        Destroy(gameObject);
-
-    //    }
-    //}
-
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("head"))
+        if(collision.gameObject.CompareTag("bounce_enemy"))
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
+            isHit = true;
         }
     }
 }

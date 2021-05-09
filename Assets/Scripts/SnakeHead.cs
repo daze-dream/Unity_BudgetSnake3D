@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class SnakeHead : MonoBehaviour
 {
+
+    private GameObject mainSnakeManager;
     // Start is called before the first frame update
     void Start()
     {
-        
+        mainSnakeManager = GameObject.FindGameObjectWithTag("manager");
     }
 
     // Update is called once per frame
@@ -16,12 +18,27 @@ public class SnakeHead : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.CompareTag("nibble"))
+    //    {
+    //        this.transform.parent.GetComponent<SnakeMove>().AddSnakeSegment();
+    //        Debug.Log("IM HIT");
+    //    }
+    //}
+
+    private void OnCollisionEnter(Collision collision)
     {
-        if(other.CompareTag("nibble"))
+        if (collision.gameObject.CompareTag("nibble"))
         {
             this.transform.parent.GetComponent<SnakeMove>().AddSnakeSegment();
+            Debug.Log("Hit Nibble");
+        }
+        if(collision.gameObject.CompareTag("bounce_enemy"))
+        {
             Debug.Log("IM HIT");
+            Destroy(mainSnakeManager);
+            //Destroy(gameObject);
         }
     }
 }

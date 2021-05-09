@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,7 +12,7 @@ public class SnakeMove : MonoBehaviour
         speed = 1.0f,
         rotationspeed = 70.0f;
 
-    public int startSize;
+    public int startSize, prevBodyCount;
     public GameObject segmentPrefab;
 
     private float dis;
@@ -34,6 +35,7 @@ public class SnakeMove : MonoBehaviour
     void Update()
     {
         //debug
+
         bodyMovement();
         if(Input.GetKey(KeyCode.X))
         {
@@ -69,19 +71,49 @@ public class SnakeMove : MonoBehaviour
         //  so the previous body part is the one "ahead" of it essentially.
         for(int i = 1; i < bodyParts.Count; i++)
         {
-            //iterate through the list
-            curSeg = bodyParts[i];
-            prevSeg = bodyParts[i - 1];
-            //get the distance between the two segments as as Vector3
-            dis = Vector3.Distance(prevSeg.position, curSeg.position);
-            Vector3 newPos = prevSeg.position;
-            newPos.y = bodyParts[0].position.y;
-            float T = Time.deltaTime * dis / followDist * currentSpeed;
-            if (T > .5f)
-                T = .5f;
+            if (bodyParts[i].gameObject.CompareTag("body") && bodyParts[i].gameObject.GetComponent<SnakeBody>().isHit == true)
+            {
 
-            curSeg.position = Vector3.Slerp(curSeg.position, newPos, T);
-            curSeg.rotation = Quaternion.Slerp(curSeg.rotation, prevSeg.rotation, T);
+                Debug.Log("Piece hit at" + i + "|| body count: " + bodyParts.Count);
+                prevBodyCount = bodyParts.Count;
+                for (int j = i; j < prevBodyCount; j++)
+                {
+                    Debug.Log("removing piece at: " + i);
+                    Destroy(bodyParts[i].gameObject);
+                    bodyParts.RemoveAt(i);
+                }
+                Debug.Log("New body count: " + bodyParts.Count);
+
+
+            }
+            else
+            {
+                //iterate through the list
+                curSeg = bodyParts[i];
+
+                prevSeg = bodyParts[i - 1];
+                //if (prevSeg == null)
+                //{
+                //    Debug.Log("prev seg is null at" + i);
+                //    bodyParts.RemoveAt(i);
+                //    //bodyParts.RemoveAt(i);
+
+                //}
+                //else
+                //{
+                    //get the distance between the two segments as as Vector3
+                    dis = Vector3.Distance(prevSeg.position, curSeg.position);
+                    Vector3 newPos = prevSeg.position;
+                    newPos.y = bodyParts[0].position.y;
+                    float T = Time.deltaTime * dis / followDist * currentSpeed;
+                    if (T > .5f)
+                        T = .5f;
+
+                    curSeg.position = Vector3.Slerp(curSeg.position, newPos, T);
+                    curSeg.rotation = Quaternion.Slerp(curSeg.rotation, prevSeg.rotation, T);
+                //}
+            }
+
 
         }
 
