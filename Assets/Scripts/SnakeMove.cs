@@ -29,6 +29,7 @@ public class SnakeMove : MonoBehaviour
         {
             AddSnakeSegment();
         }
+
     }
 
     // Update is called once per frame
@@ -58,12 +59,14 @@ public class SnakeMove : MonoBehaviour
             currentSpeed /= 2;
         }
 
-        //rotate the head based on inout axis 
+        //rotate the head based on input axis 
         float horizontalInput = Input.GetAxis("Horizontal");
         bodyParts[0].Rotate(Vector3.up * rotationspeed * Time.deltaTime * horizontalInput);
 
         // keep moving the head in the direction of its rotation
         bodyParts[0].Translate(bodyParts[0].forward * currentSpeed * Time.deltaTime, Space.World);
+        //bodyParts[0].GetComponent<Rigidbody>().velocity = bodyParts[0].forward;
+
 
         
         //now do this for all body parts in the List. List is a strongly ordered list, so it'll be in the same order we put them in.

@@ -33,8 +33,10 @@ public class Enemy : MonoBehaviour
         //{
         //    Bounce(collision.GetContact(0).normal);
         //}
-
-        Bounce(collision.GetContact(0).normal);
+        if (collision.collider.tag == "wall")
+        {
+            Bounce(collision.GetContact(0).normal);
+        }
 
         //Destroy(gameObject);
         //Debug.Log("hit");

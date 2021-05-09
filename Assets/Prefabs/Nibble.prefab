@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2368681641218330204}
   - component: {fileID: 114049322101421382}
   - component: {fileID: 682731898}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Nibble
   m_TagString: nibble
   m_Icon: {fileID: 0}
