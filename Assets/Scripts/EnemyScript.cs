@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
     // Start is called before the first frame update
     private Vector3 initialVelocity;
@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.velocity = new Vector3(2, 0, 6);
+        //rb.velocity = new Vector3(2, 0, 6);
     }
 
     // Update is called once per frame
@@ -33,7 +33,7 @@ public class Enemy : MonoBehaviour
         //{
         //    Bounce(collision.GetContact(0).normal);
         //}
-        if (collision.collider.tag == "wall")
+        if (collision.collider.tag != "nibble")
         {
             Bounce(collision.GetContact(0).normal);
         }
@@ -50,5 +50,10 @@ public class Enemy : MonoBehaviour
 
         //Debug.Log("Out Direction: " + direction  +" || Speed: " + speed);
         rb.velocity = direction * Mathf.Max(speed, minVelocity);
+    }
+
+    private void SetVelocity(Vector3 vel)
+    {
+        rb.velocity = vel;
     }
 }

@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class PowerupBehaviour : MonoBehaviour
 {
-
+    public ParticleSystem nibbleGetPartciles;
 
     // Start is called before the first frame update
     void Start()
     {
-        
     }
 
     // Update is called once per frame
@@ -31,6 +30,7 @@ public class PowerupBehaviour : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("head"))
         {
+            nibbleGetPartciles.Play();
             Destroy(gameObject);
         }
     }

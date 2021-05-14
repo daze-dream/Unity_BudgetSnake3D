@@ -59,8 +59,12 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
         }
 
         //rotate the head based on input axis 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        bodyParts[0].Rotate(Vector3.up * rotationspeed * Time.deltaTime * horizontalInput);
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        if(horizontalInput != 0)
+        {
+            bodyParts[0].Rotate(Vector3.up * rotationspeed * Time.deltaTime * horizontalInput);
+
+        }
 
         // keep moving the head in the direction of its rotation
         bodyParts[0].Translate(bodyParts[0].forward * currentSpeed * Time.deltaTime, Space.World);
@@ -129,4 +133,6 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
         //now add it to the list
         bodyParts.Add(newPart);
     }
+
+
 }
