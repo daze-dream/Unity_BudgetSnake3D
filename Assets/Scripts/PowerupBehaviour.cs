@@ -30,7 +30,9 @@ public class PowerupBehaviour : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("head"))
         {
-            nibbleGetPartciles.Play();
+            var temp = Instantiate(nibbleGetPartciles, this.transform.position, Quaternion.identity);
+            Debug.Log(temp.transform.position);
+            temp.Play();
             Destroy(gameObject);
         }
     }
