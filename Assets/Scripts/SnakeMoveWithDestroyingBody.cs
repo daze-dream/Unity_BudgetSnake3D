@@ -17,13 +17,8 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
     /// <summary> starting size of the snake to instantiate with.</summary>
     public int startSize;//, prevBodyCount;
     public GameObject segmentPrefab;
-
     private float dis;
     private Transform curSeg, nextSeg;
-
-    //game mechanics
-    bool hasSpeedPowerup = false;
-
 
     // Start is called before the first frame update
     void Start()
@@ -46,7 +41,10 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
 
     }
 
-    //body parts should move in relation to what is in front and behind
+    /// <summary>
+    /// <para> this is the code that moves the body of the snake. </para>
+    /// essentially iterates through the List and moves each piece.
+    /// </summary>
     public void bodyMovement()
     {
 
@@ -128,7 +126,6 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
 
     /// <summary>
     /// <para>this is supposed to destroy the whole object </para>
-    /// 
     /// it mimics this by iterating and playing the FX of all the objects, then deletes itself.
     /// </summary>
     public void DestroyAllSegments()
@@ -145,10 +142,9 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
     /// <summary>
     /// <para>this is supposed to delete segments after the index that was hit.</para>
     /// since we both destroy and remove, the list dynamically shrinks, meaning indexes stay the same.
-    /// <br />
     /// so, we delete that index place as many times as there are remaining pieces after the hit index.
     /// </summary>
-    /// <param name="index"></param>
+    /// <param name="index"> index of segment hit</param>
     public void DestroySegmentsAfterParam(int index)
     {
         // get how many pieces are after the index hit, then iterate.
