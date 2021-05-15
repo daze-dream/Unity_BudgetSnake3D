@@ -7,6 +7,7 @@ public class SnakeHead : MonoBehaviour
 
     private GameObject mainSnakeManager;
     private Rigidbody myRB;
+    public ParticleSystem headDestroyFX;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,14 +22,6 @@ public class SnakeHead : MonoBehaviour
         
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.CompareTag("nibble"))
-    //    {
-    //        this.transform.parent.GetComponent<SnakeMove>().AddSnakeSegment();
-    //        Debug.Log("IM HIT");
-    //    }
-    //}
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -41,11 +34,13 @@ public class SnakeHead : MonoBehaviour
         if(collision.gameObject.CompareTag("bounce_enemy"))
         {
             Debug.Log("HEAD HIT ENEMY. GAME OVER");
-            Destroy(mainSnakeManager);
-            //Destroy(gameObject);
+            Instantiate(headDestroyFX, this.transform.position, this.transform.rotation);
+            mainSnakeManager.GetComponent<SnakeMoveWithDestroyingBody>().DestroyAllSegments();
+            GameObject.Find("GameManagerObj").GetComponent<GameManager>().GameOver();
         }
         if(collision.collider.tag == "wall")
         {
+            //bounce method basically
             float curSpeed = mainSnakeManager.GetComponent<SnakeMove>().speed;
             Debug.Log("Object Up: " + transform.up + " || object Quarternion:  " + transform.rotation + "|| normal of collison: " + collision.GetContact(0).normal);
             var direction = Vector3.Reflect(transform.forward, collision.GetContact(0).normal);
@@ -56,12 +51,4 @@ public class SnakeHead : MonoBehaviour
         }
     }
 
-    //private void Bounce(Vector3 collisionNormal)
-    //{
-    //    var speed = lastFrameVelocity.magnitude;
-    //    var direction = Vector3.Reflect(lastFrameVelocity.normalized, collisionNormal);
-
-    //    //Debug.Log("Out Direction: " + direction  +" || Speed: " + speed);
-    //    rb.velocity = direction * Mathf.Max(speed, minVelocity);
-    //}
 }

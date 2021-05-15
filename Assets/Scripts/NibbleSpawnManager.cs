@@ -19,10 +19,10 @@ public class NibbleSpawnManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameObject.FindGameObjectsWithTag("nibble").Length == 0)
-        {
-            SpawnNibble(nibbleCount);
-        }
+        //if(GameObject.FindGameObjectsWithTag("nibble").Length == 0)
+        //{
+        //    SpawnNibble(nibbleCount);
+        //}
     }
     private Vector3 GenerateSpawnPos()
     {
@@ -54,6 +54,18 @@ public class NibbleSpawnManager : MonoBehaviour
         for(int i = 0; i < amount; i++)
         {
             Instantiate(nibblePrefab, GenerateSpawnPos(), nibblePrefab.transform.rotation);
+        }
+    }
+
+    public IEnumerator ISpawnEnumerator()
+    {
+        while (GameObject.Find("GameManagerObj").GetComponent<GameManager>().GAMEACTIVE == true)
+        {
+            if (GameObject.FindGameObjectsWithTag("nibble").Length == 0)
+            {
+                SpawnNibble(nibbleCount);
+            }
+            yield return null;
         }
     }
 

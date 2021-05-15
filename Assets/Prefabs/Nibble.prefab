@@ -136,6 +136,11 @@ PrefabInstance:
       propertyPath: playOnAwake
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3411399494288419255, guid: 91d6b7e74b263cb4c81dcd36ff94f52f,
+        type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 3539769889093983499, guid: 91d6b7e74b263cb4c81dcd36ff94f52f,
         type: 3}
       propertyPath: m_RenderAlignment

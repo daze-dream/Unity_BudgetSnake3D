@@ -32,7 +32,7 @@ public class PowerupBehaviour : MonoBehaviour
         {
             var temp = Instantiate(nibbleGetPartciles, this.transform.position, Quaternion.identity);
             Debug.Log(temp.transform.position);
-            temp.Play();
+            //temp.Play();
             Destroy(gameObject);
         }
     }

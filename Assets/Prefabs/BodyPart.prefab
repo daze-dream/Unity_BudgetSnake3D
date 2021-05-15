@@ -122,3 +122,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isHit: 0
+  SegmentDestroyFX: {fileID: 207329995828952846, guid: 399a9fa0144b7f74a9a192d3e80c035b,
+    type: 3}
