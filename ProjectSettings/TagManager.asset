@@ -10,6 +10,7 @@ TagManager:
   - wall
   - bounce_enemy
   - manager
+  - Misc Music
   layers:
   - Default
   - TransparentFX
