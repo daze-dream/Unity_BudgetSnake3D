@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     {
         backgroundMusicSource = GetComponent<AudioSource>();
         backgroundMusicSource.clip = menuMusic;
-        backgroundMusicSource.Play();
+        backgroundMusicSource.PlayDelayed(.5f);
     }
 
     // Update is called once per frame
