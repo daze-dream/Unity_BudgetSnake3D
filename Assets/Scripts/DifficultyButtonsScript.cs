@@ -24,6 +24,7 @@ public class DifficultyButtonsScript : MonoBehaviour
 
     void SetDifficulty()
     {
+        GameObject.Find("MiscSoundObj").GetComponent<MiscAudioScript>().PlayMenuSound();
         gm.StartGame(difficulty);
     }
 }

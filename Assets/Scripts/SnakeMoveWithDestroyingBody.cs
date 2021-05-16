@@ -89,6 +89,7 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
                 //    bodyParts.RemoveAt(i);
                 //}
                 DestroySegmentsAfterParam(i);
+                GameObject.Find("GameManagerObj").GetComponent<GameManager>().UpdateScore();
                 Debug.Log("New body count: " + bodyParts.Count);
             }
             else
@@ -148,6 +149,7 @@ public class SnakeMoveWithDestroyingBody : MonoBehaviour
     public void DestroySegmentsAfterParam(int index)
     {
         // get how many pieces are after the index hit, then iterate.
+        GameObject.Find("MiscSoundObj").GetComponent<MiscAudioScript>().PlayNibbleDeathSound();
         var prevCount = bodyParts.Count - index;
         for (int i = 0; i < prevCount; i ++)
         {

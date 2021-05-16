@@ -3,7 +3,11 @@ guid: c1d186862b134474f9ed630ceb1e6fbf
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - headDestroyFX: {instanceID: 0}
+  - bounceSound: {instanceID: 0}
+  - nibbleGetSound: {instanceID: 0}
+  - deathSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

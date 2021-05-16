@@ -10,9 +10,11 @@ public class EnemyScript : MonoBehaviour
 
     private Vector3 lastFrameVelocity;
     private Rigidbody rb;
+    private AudioSource thisSource;
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        thisSource = GetComponent<AudioSource>();
         //rb.velocity = new Vector3(2, 0, 6);
     }
 
@@ -45,6 +47,7 @@ public class EnemyScript : MonoBehaviour
 
     private void Bounce(Vector3 collisionNormal)
     {
+        thisSource.Play();
         var speed = lastFrameVelocity.magnitude;
         var direction = Vector3.Reflect(lastFrameVelocity.normalized, collisionNormal);
 
