@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>The snake's head, which should always be the first item in the snake list. Manages the snake's mechanics.</summary>
 public class SnakeHead : MonoBehaviour
 {
 
@@ -27,7 +28,11 @@ public class SnakeHead : MonoBehaviour
         
     }
 
-
+    /// <summary>
+    /// the head of the snake is the acutal "manager" of the snake body. so different things happen on collision.
+    /// may want to refactor for different player types
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("nibble"))

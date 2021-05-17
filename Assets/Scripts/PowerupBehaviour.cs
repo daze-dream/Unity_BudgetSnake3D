@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Nibble mechanics and behaviour.
+/// </summary>
 public class PowerupBehaviour : MonoBehaviour
 {
     public ParticleSystem nibbleGetPartciles;
@@ -16,16 +19,11 @@ public class PowerupBehaviour : MonoBehaviour
     {
         
     }
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if(other.CompareTag("head"))
-    //    {
-    //        Destroy(gameObject);
-
-    //    }
-    //}
-
+    
+    /// <summary>
+    /// summons the partcile effects on collision
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("head"))

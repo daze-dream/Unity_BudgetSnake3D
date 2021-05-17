@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Miscellaneous sound effects script
+/// </summary>
 public class MiscAudioScript : MonoBehaviour
 {
     public AudioClip menuSelectionSound;
@@ -9,14 +12,13 @@ public class MiscAudioScript : MonoBehaviour
     public AudioClip nibbleDeathSound;
     public AudioSource thisAudio;
     //these variables are to prevent more and more of the parent object to be spawned
-    private GameObject[] other;
-    bool NOTFIRST = false;
+    private static MiscAudioScript thisScriptInstance;
     // Start is called before the first frame update
-
     void Start()
     {
-        DontDestroyOnLoad(gameObject);
         thisAudio = GetComponent<AudioSource>();
+        //PlayMenuSound();
+
     }
 
     // Update is called once per frame
@@ -30,26 +32,23 @@ public class MiscAudioScript : MonoBehaviour
     /// </summary>
     private void Awake()
     {
-        //find all objects in the scene of that tag
-        other = GameObject.FindGameObjectsWithTag("Misc Music");
-        //iterate through
-        foreach (GameObject oneOther in other)
-        {
-            //if this object is not the first one in the build index...
-            if (oneOther.scene.buildIndex == -1)
-            {
-                //means its the old one
-                NOTFIRST = true;
-            }
-        }
-        //so destroy it
-        if (NOTFIRST == true)
-        {
-            Destroy(gameObject);
-        }
-        //posterity code
-        DontDestroyOnLoad(gameObject);
         thisAudio = GetComponent<AudioSource>();
+        if (GameObject.FindGameObjectsWithTag("Misc Music").Length > 1)
+        {
+            Destroy(this.gameObject);
+            Debug.Log("Destroyed!");
+            PlayMenuSound();
+
+        }
+        else
+        {
+            thisAudio = GetComponent<AudioSource>();
+            DontDestroyOnLoad(gameObject);
+            PlayMenuSound();
+
+        }
+        Debug.Log("Not Destroyed!");
+
     }
 
     public void PlayMenuSound()
@@ -65,5 +64,14 @@ public class MiscAudioScript : MonoBehaviour
     public void PlayNibbleDeathSound()
     {
         thisAudio.PlayOneShot(nibbleDeathSound, 1.0f);
+    }
+
+    /// <summary>
+    /// DEPRECATED: was used to countdown before destroying.
+    /// </summary>
+    /// <returns></returns>
+    IEnumerable IWaitCoroutine()
+    {
+        yield return new WaitForSeconds(1.5f);
     }
 }

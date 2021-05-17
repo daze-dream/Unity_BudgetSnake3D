@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary> <para>Basic code skeleton adapted from Gamad: https://www.youtube.com/watch?v=xz8Ga9er3_8 </para>
+/// The movement of the snake, and deals with deletion of hit parts.</summary>
 public class SnakeMoveWithDestroyingBody : MonoBehaviour
 {
 

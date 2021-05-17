@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary> Manages spawning the enemies based on difficulty, in set locations but random velocities.</summary>
 public class EnemySpawnManager : MonoBehaviour
 {
     public GameObject enemyPrefab;
@@ -9,7 +10,6 @@ public class EnemySpawnManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //SpawnEnemies(2);
     }
 
     // Update is called once per frame
@@ -18,6 +18,10 @@ public class EnemySpawnManager : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// spawns enemies based on difficulty, in set locations
+    /// </summary>
+    /// <param name="difficulty"></param>
     public void SpawnEnemies(int difficulty)
     {
         switch (difficulty)

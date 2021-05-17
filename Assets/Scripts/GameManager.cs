@@ -5,6 +5,9 @@ using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+/// <summary>
+/// manages game states, UI + score.
+/// </summary>
 public class GameManager : MonoBehaviour
 {
     public bool GAMEACTIVE = false;
@@ -35,10 +38,8 @@ public class GameManager : MonoBehaviour
     }
 
     /// <summary>
-    /// 
+    /// update the score. automatically checks the snake's length.
     /// </summary>
-    /// <param name="addOrSub"></param>
-    /// <param name="totalLength"></param>
     public void UpdateScore()
     {
         int x = playerSnake.GetComponent<SnakeMoveWithDestroyingBody>().bodyParts.Count - 1;
@@ -52,6 +53,10 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Starts the game, disabling UI and resetting values
+    /// </summary>
+    /// <param name="difficulty"></param>
     public void StartGame(int difficulty)
     {
         //currentLength = 0;
@@ -73,6 +78,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// End the game
+    /// </summary>
     public void GameOver()
     {
         GAMEACTIVE = false;
@@ -81,6 +89,9 @@ public class GameManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Restart aka reload the scene. Take care with the music obj
+    /// </summary>
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);

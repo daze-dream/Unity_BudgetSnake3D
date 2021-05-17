@@ -5,7 +5,7 @@ using UnityEngine;
 public class NibbleSpawnManager : MonoBehaviour
 {
     public GameObject nibblePrefab;
-    public int nibbleCount = 1;
+    public int nibbleCount;
 
     public float xRange, zRange, checkRadius = 1.0f;
     
@@ -24,6 +24,11 @@ public class NibbleSpawnManager : MonoBehaviour
         //    SpawnNibble(nibbleCount);
         //}
     }
+    /// <summary>
+    /// This is supposed to spawn a random position based on the size of the field, 
+    /// while checking the collision to see if it is valid aka not inside another object in a radius
+    /// </summary>
+    /// <returns>Vector3 in the area of the field</returns>
     private Vector3 GenerateSpawnPos()
     {
         bool isValidSpawn = false;
@@ -33,6 +38,7 @@ public class NibbleSpawnManager : MonoBehaviour
             spawnX = Random.Range(-Mathf.Floor((xRange / 2) - 1), Mathf.Floor((xRange / 2) - 1));
             spawnZ = Random.Range(-Mathf.Floor((zRange / 2) - 1), Mathf.Floor((zRange / 2) - 1));
             isValidSpawn = true;
+            //checks a radius around the spawnpoint to prevent being stuck in something
             Collider[] localColliders = Physics.OverlapSphere(new Vector3(spawnX, 1, spawnZ), checkRadius);
             foreach(Collider l in localColliders)
             {
@@ -49,6 +55,10 @@ public class NibbleSpawnManager : MonoBehaviour
 
     }
 
+    /// <summary>
+    /// Spawns nibbles and you can set the amount.
+    /// </summary>
+    /// <param name="amount"></param>
     void SpawnNibble(int amount)
     {
         for(int i = 0; i < amount; i++)
@@ -56,7 +66,10 @@ public class NibbleSpawnManager : MonoBehaviour
             Instantiate(nibblePrefab, GenerateSpawnPos(), nibblePrefab.transform.rotation);
         }
     }
-
+    /// <summary>
+    /// basically the above code but in a coroutine to be able to use in the GameManager. While there are no nibbles, spawn some.
+    /// </summary>
+    /// <returns></returns>
     public IEnumerator ISpawnEnumerator()
     {
         while (GameObject.Find("GameManagerObj").GetComponent<GameManager>().GAMEACTIVE == true)

@@ -202,6 +202,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 881473837}
+        m_MethodName: PlayMenuSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &23812257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1914,7 +1925,7 @@ MonoBehaviour:
 
     Controls
 
-    A/D/Left/Right: Rotate Snake | Z: Speedup | X: Brake'
+    A/D/Left/Right: Rotate Snake | Z/W/Up: Speedup | X/S/Down: Slowdown'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1983,10 +1994,10 @@ MonoBehaviour:
   m_margin: {x: -283.8109, y: 2.696869, z: -273.90002, w: 0}
   m_textInfo:
     textComponent: {fileID: 877686483}
-    characterCount: 140
+    characterCount: 155
     spriteCount: 0
     spaceCount: 22
-    wordCount: 24
+    wordCount: 28
     linkCount: 0
     lineCount: 3
     pageCount: 1
@@ -2027,7 +2038,7 @@ GameObject:
   - component: {fileID: 881473837}
   m_Layer: 0
   m_Name: MiscSoundObj
-  m_TagString: Untagged
+  m_TagString: Misc Music
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

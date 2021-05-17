@@ -3,6 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+/// <summary> <para>DEPRECATED: Basic code skeleton adapted from Gamad: https://www.youtube.com/watch?v=xz8Ga9er3_8 </para>
+/// DEPRECATED: original snake movement but without parts being destroyed.
+/// </summary>
 public class SnakeMove : MonoBehaviour
 {
 
